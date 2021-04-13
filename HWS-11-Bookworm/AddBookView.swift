@@ -17,6 +17,14 @@ struct AddBookView: View {
     @State private var genre = ""
     @State private var review = ""
     
+    var formIsFilled: Bool {
+        if title != "" && author != "" && genre != "" && review != "" {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     let genres = ["Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller"]
     
     var body: some View {
@@ -47,6 +55,7 @@ struct AddBookView: View {
                         try? self.moc.save()
                         self.presentationMode.wrappedValue.dismiss()
                     }
+                    .disabled(!formIsFilled)
                 }
             }
             .navigationBarTitle("Add Book")
