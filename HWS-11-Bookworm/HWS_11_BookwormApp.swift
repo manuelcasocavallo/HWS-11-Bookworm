@@ -33,7 +33,7 @@ struct HWS_11_BookwormApp: App {
     }
     
     var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "BookwormApp")
+        let container = NSPersistentContainer(name: "Bookworm")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
