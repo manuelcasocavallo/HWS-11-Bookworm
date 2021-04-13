@@ -16,6 +16,7 @@ struct AddBookView: View {
     @State private var rating = 3
     @State private var genre = ""
     @State private var review = ""
+    var date = Date()
     
     var formIsFilled: Bool {
         if title != "" && author != "" && genre != "" && review != "" {
@@ -51,6 +52,7 @@ struct AddBookView: View {
                         newBook.genre = self.genre
                         newBook.rating = Int16(self.rating)
                         newBook.review = self.review
+                        newBook.date = self.date
                         
                         try? self.moc.save()
                         self.presentationMode.wrappedValue.dismiss()

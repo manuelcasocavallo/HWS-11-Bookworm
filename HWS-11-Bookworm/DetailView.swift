@@ -13,6 +13,13 @@ struct DetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var showingDeleteAlert = false
     
+    let addedDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .none
+        return formatter
+    }()
+    
     let book: Book
     
     var body: some View {
@@ -30,15 +37,30 @@ struct DetailView: View {
                         .clipShape(Capsule())
                         .offset(x: -5, y: -5)
                 }
-                Text(self.book.author ?? "Unknown Author")
+                Text(self.book.title ?? "Unknown Title")
                     .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(.primary)
+                    .padding([.top, .horizontal])
+                
+                Text(self.book.author ?? "Unknown Author")
+                    .font(.title3)
+                    .fontWeight(.semibold)
                     .foregroundColor(.secondary)
+                    .padding(.horizontal)
                 
                 Text(self.book.review ?? "No review")
+                    
+                    .padding()
+                
+                Text("Added on: \(book.date ?? Date(), formatter: self.addedDateFormatter)")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
                     .padding()
                 
                 RatingView(rating: .constant(Int(self.book.rating)))
                     .font(.largeTitle)
+                    .padding()
                 
                 Spacer()
             }
