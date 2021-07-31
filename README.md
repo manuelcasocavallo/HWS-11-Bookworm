@@ -1,4 +1,4 @@
-# HWS-11-Bookworm
+# Bookworm
 ### Relevant frameworks used:
 * SwiftUI
 * CoreData
